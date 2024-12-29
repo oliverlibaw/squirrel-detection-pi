@@ -1,6 +1,24 @@
 # Hailo Model Zoo
 
-DeGirum maintains a comprehensive model zoo optimized for Hailo-8 and Hailo-8L devices. The models are pre-quantized and fine-tuned for efficient inference on these hardware platforms.
+DeGirum maintains a comprehensive model zoo optimized for Hailo-8 and Hailo-8L devices. The models are pre-quantized and fine-tuned for efficient inference on these hardware platforms. 
+
+DeGirum maintains a **public model zoo** at `degirum/models_hailort` on the DeGirum AI Hub. Users can access these models even without registering for the AI Hub.
+
+### Programmatically Listing Models
+
+Use the following code snippet to programmatically list all models available in the Hailo Model Zoo:
+
+```python
+import degirum as dg
+import degirum_tools
+
+hailo_model_zoo = dg.connect(
+    inference_host_address='@local',
+    zoo_url='degirum/models_hailort'    
+)
+
+print(hailo_model_zoo.list_models())
+```
 
 ## Classification Models
 
