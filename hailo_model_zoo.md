@@ -4,6 +4,10 @@ DeGirum maintains a comprehensive model zoo optimized for Hailo-8 and Hailo-8L d
 
 DeGirum maintains a **public model zoo** at `degirum/models_hailort` on the DeGirum AI Hub. Users can access these models even without registering for the AI Hub.
 
+DeGirum also offers the latest state-of-the-art enterprise models. You can reach out to DeGirum at this [link](https://degirum.atlassian.net/servicedesk/customer/portal/1/group/1/create/2) to request access.
+
+Don't see the model you want in the zoo? Open a request [here](https://github.com/DeGirum/hailo_examples/issues/new?assignees=&labels=model-request&projects=&template=model_request.md&title=Model+Request%3A+%5BModel+Name%5D).
+
 ### Programmatically Listing Models
 
 Use the following code snippet to programmatically list all models available in the Hailo Model Zoo:
@@ -19,6 +23,7 @@ hailo_model_zoo = dg.connect(
 
 print(hailo_model_zoo.list_models())
 ```
+The `model_name` argument in PySDK functions can take any of the values returned by the list_models function. Additionally, the `zoo_url` argument should be set to `degirum/models_hailort` to access the Hailo Model Zoo.
 
 ## Classification Models
 
