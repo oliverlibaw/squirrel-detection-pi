@@ -1,6 +1,34 @@
-# Using DeGirum PySDK with Hailo Hardware
+# Using DeGirum PySDK, DeGirum Tools, and DeGirum CLI with Hailo Hardware
 
-This repository provides a step-by-step guide on using the DeGirum PySDK with Hailo hardware for efficient AI inference. The guide assumes that Hailo's tools and SDK are already installed and configured on your machine.
+This repository provides a comprehensive guide on using DeGirum PySDK, DeGirum Tools, and DeGirum CLI with Hailo hardware for efficient AI inference. These tools simplify edge AI development by enabling seamless integration, testing, and deployment of AI models on multiple hardware platforms, including Hailo-8 and Hailo-8L.
+
+---
+
+## Table of Contents
+
+1. [Introduction](#introduction)
+2. [Prerequisites](#prerequisites)
+3. [Setting Up the Environment](#setting-up-the-environment)
+   - [Linux/macOS](#linuxmacos)
+   - [Windows](#windows)
+4. [Installing DeGirum CLI](#installing-degirum-cli)
+5. [Verifying Installation](#verifying-installation)
+6. [Example Usage](#example-usage)
+   - [Image Inference](#image-inference)
+   - [Video Inference](#video-inference)
+7. [Additional Resources](#additional-resources)
+
+---
+
+## Introduction
+
+DeGirum provides a powerful suite of tools to simplify the development and deployment of edge AI applications:
+
+- [DeGirum PySDK](https://github.com/DeGirum/PySDKExamples): The core library for integrating AI inference capabilities into applications.
+- [DeGirum Tools](https://github.com/DeGirum/degirum_tools): Utilities for benchmarking, streaming, and interacting with DeGirum's model zoo.
+- [DeGirum CLI](https://pypi.org/project/degirum-cli/): A command-line interface for testing and managing AI models.
+
+These tools are designed to be hardware-agnostic, enabling developers to build scalable, flexible solutions without being locked into a specific platform.
 
 ---
 
@@ -14,13 +42,11 @@ This repository provides a step-by-step guide on using the DeGirum PySDK with Ha
 
 ---
 
-## Step 1: Set Up a Virtual Environment
+## Setting Up the Environment
 
 To keep your Python environment clean and avoid conflicts, it's recommended to use a virtual environment for installing the required packages.
 
-### Create a Virtual Environment
-
-#### Linux/macOS
+### Linux/macOS
 
 1. Navigate to the directory where you'd like to create the environment.
 2. Run the following commands:
@@ -29,7 +55,7 @@ To keep your Python environment clean and avoid conflicts, it's recommended to u
    source degirum_env/bin/activate
    ```
 
-#### Windows
+### Windows
 
 1. Navigate to the directory where you'd like to create the environment.
 2. Run the following commands:
@@ -48,7 +74,7 @@ pip install --upgrade pip
 
 ---
 
-## Step 2: Install DeGirum CLI
+## Installing DeGirum CLI
 
 Install the DeGirum CLI package from PyPI using `pip`. This package includes `degirum`, `degirum_tools`, and `degirum_cli` for easy testing and development:
 
@@ -57,14 +83,13 @@ pip install degirum_cli
 ```
 
 This will automatically install:
-
 - **`degirum`**: The core PySDK library for AI inference.
 - **`degirum_tools`**: Additional tools for streaming, benchmarking, and other utilities.
 - **`degirum_cli`**: A command-line interface for interacting with DeGirum PySDK.
 
 ---
 
-## Step 3: Verify Installation
+## Verifying Installation
 
 To verify the installation, run the following commands:
 
@@ -101,15 +126,11 @@ Devices:
 
 > **Note:** DeGirum PySDK supports Hailo Runtime version **4.19.0**. Ensure your Hailo environment is configured to use this version.
 
-Ensure that the `Devices` section lists the Hailo device details as shown above.
-
 ---
 
-## Step 4: Example Usage with DeGirum CLI
+## Example Usage
 
-DeGirum CLI simplifies testing and development. Below is an example of using the CLI with Hailo hardware:
-
-### Run Inference on an Image
+### Image Inference
 
 #### Linux/macOS
 
@@ -122,8 +143,6 @@ degirum_cli predict-image \
 
 #### Windows
 
-For Windows, use the following format instead of the backslash continuation:
-
 ```cmd
 degirum_cli predict-image ^
     --inference-host-address @local ^
@@ -131,11 +150,7 @@ degirum_cli predict-image ^
     --model-zoo-url degirum/models_hailort
 ```
 
-- **`--inference-host-address`**: Set the inference host address (use `@local` for local inference).
-- **`--model-name`**: Provide the name of the model you want to use.
-- **`--model-zoo-url`**: Specify the URL for the Hailo model zoo.
-
-### Run Inference on a Video
+### Video Inference
 
 #### Linux/macOS
 
@@ -148,18 +163,12 @@ degirum_cli predict-video \
 
 #### Windows
 
-For Windows, use the following format instead of the backslash continuation:
-
 ```cmd
-degirum_cli predict-image ^
+degirum_cli predict-video ^
     --inference-host-address @local ^
     --model-name yolov8n_relu6_coco--640x640_quant_hailort_hailo8_1 ^
     --model-zoo-url degirum/models_hailort
 ```
-
-- **`--inference-host-address`**: Set the inference host address (use `@local` for local inference).
-- **`--model-name`**: Provide the name of the model you want to use.
-- **`--model-zoo-url`**: Specify the URL for the Hailo model zoo.
 
 ---
 
@@ -167,6 +176,7 @@ degirum_cli predict-image ^
 
 - [DeGirum Documentation](https://docs.degirum.com)
 - [Hailo Documentation](https://hailo.ai/)
+- [Hailo Model Zoo](./hailo_model_zoo.md): Explore the full list of models optimized for Hailo hardware.
 
 ---
 
