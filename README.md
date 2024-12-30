@@ -174,9 +174,11 @@ degirum_cli predict-video ^
 
 ## Additional Resources
 
+- [Hailo Model Zoo](./hailo_model_zoo.md): Explore the full list of models optimized for Hailo hardware.
+- [Hailo8 Tutorial Notebook](examples/quick_start_hailo8.ipynb): Jupyter notebook tutorial to get started with Hailo8.
+- [Hailo8L Tutorial Notebook](examples/quick_start_hailo8l.ipynb): Jupyter notebook tutorial to get started with Hailo8L.
 - [DeGirum Documentation](https://docs.degirum.com)
 - [Hailo Documentation](https://hailo.ai/)
-- [Hailo Model Zoo](./hailo_model_zoo.md): Explore the full list of models optimized for Hailo hardware.
 
 ---
 
