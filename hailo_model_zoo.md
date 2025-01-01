@@ -39,15 +39,18 @@ The `model_name` argument in PySDK functions can take any of the values returned
 | Model Name                                     | Application              | Supported Device |
 |-----------------------------------------------|--------------------------|------------------|
 | yolov8n_relu6_age--256x256_quant_hailort_hailo8_1        | Age Prediction         | Hailo-8          |
+| yolov8n_relu6_age--256x256_quant_hailort_hailo8l_1        | Age Prediction         | Hailo-8L          |
 
 ## Detection Models
 
 | Model Name                                     | Application              | Supported Device |
 |-----------------------------------------------|--------------------------|------------------|
-| yolov8n_relu6_car--640x640_quant_hailort_hailo8_1        | Car Detection          | Hailo-8          |
-| yolov8n_relu6_car--640x640_quant_hailort_hailo8l_1       | Car Detection          | Hailo-8L         |
 | yolov8n_relu6_coco--640x640_quant_hailort_hailo8_1       | COCO Object Detection  | Hailo-8          |
 | yolov8n_relu6_coco--640x640_quant_hailort_hailo8l_1      | COCO Object Detection  | Hailo-8L         |
+| yolov8n_silu_coco--640x640_quant_hailort_hailo8_1        | COCO Object Detection  | Hailo-8          |
+| yolov8n_silu_coco--640x640_quant_hailort_hailo8l_1       | COCO Object Detection  | Hailo-8L         |
+| yolov8n_relu6_car--640x640_quant_hailort_hailo8_1        | Car Detection          | Hailo-8          |
+| yolov8n_relu6_car--640x640_quant_hailort_hailo8l_1       | Car Detection          | Hailo-8L         |
 | yolov8n_relu6_face--640x640_quant_hailort_hailo8_1       | Face Detection         | Hailo-8          |
 | yolov8n_relu6_face--640x640_quant_hailort_hailo8l_1      | Face Detection         | Hailo-8L         |
 | yolov8n_relu6_fire_smoke--640x640_quant_hailort_hailo8_1 | Fire and Smoke Detection | Hailo-8        |
@@ -61,15 +64,22 @@ The `model_name` argument in PySDK functions can take any of the values returned
 | yolov8n_relu6_person--640x640_quant_hailort_hailo8_1     | Person Detection       | Hailo-8          |
 | yolov8n_relu6_ppe--640x640_quant_hailort_hailo8_1        | PPE Detection          | Hailo-8          |
 | yolov8n_relu6_ppe--640x640_quant_hailort_hailo8l_1       | PPE Detection          | Hailo-8L         |
-| yolov8n_silu_coco--640x640_quant_hailort_hailo8_1        | COCO Object Detection  | Hailo-8          |
-| yolov8n_silu_coco--640x640_quant_hailort_hailo8l_1       | COCO Object Detection  | Hailo-8L         |
 
 ## Keypoint Detection Models
 
 | Model Name                                     | Application              | Supported Device |
 |-----------------------------------------------|--------------------------|------------------|
-| yolov8n_relu6_widerface_kpts--640x640_quant_hailort_hailo8_1 | WiderFace with Keypoints | Hailo-8        |
-| yolov8n_relu6_widerface_kpts--640x640_quant_hailort_hailo8l_1 | WiderFace with Keypoints | Hailo-8L       |
+| yolov8n_relu6_coco_pose--640x640_quant_hailort_hailo8_1 | Pose Detection | Hailo-8        |
+| yolov8n_relu6_coco_pose--640x640_quant_hailort_hailo8l_1| Pose Detection | Hailo-8L       |
+| yolov8n_relu6_widerface_kpts--640x640_quant_hailort_hailo8_1 | Face with Keypoints | Hailo-8        |
+| yolov8n_relu6_widerface_kpts--640x640_quant_hailort_hailo8l_1 | Face with Keypoints | Hailo-8L       |
+
+## Instance Segmentation Models
+
+| Model Name                                     | Application              | Supported Device |
+|-----------------------------------------------|--------------------------|------------------|
+| yolov8n_relu6_coco_seg--640x640_quant_hailort_hailo8_1 | Instance Segmentation | Hailo-8        |
+| yolov8n_relu6_coco_seg--640x640_quant_hailort_hailo8l_1 | Instance Segmentation | Hailo-8L       |
 
 ---
 
