@@ -49,6 +49,10 @@ The `model_name` argument in PySDK functions can take any of the values returned
 | yolov8n_relu6_coco--640x640_quant_hailort_hailo8l_1      | COCO Object Detection  | Hailo-8L         |
 | yolov8n_silu_coco--640x640_quant_hailort_hailo8_1        | COCO Object Detection  | Hailo-8          |
 | yolov8n_silu_coco--640x640_quant_hailort_hailo8l_1       | COCO Object Detection  | Hailo-8L         |
+| yolo11n_silu_coco--640x640_quant_hailort_hailo8_1        | COCO Object Detection  | Hailo-8           |
+| yolo11n_silu_coco--640x640_quant_hailort_hailo8l_1        | COCO Object Detection  | Hailo-8L           |
+| yolo11s_silu_coco--640x640_quant_hailort_hailo8_1        | COCO Object Detection  | Hailo-8           |
+| yolo11n_silu_coco--640x640_quant_hailort_hailo8l_1        | COCO Object Detection  | Hailo-8L           |
 | yolov8n_relu6_car--640x640_quant_hailort_hailo8_1        | Car Detection          | Hailo-8          |
 | yolov8n_relu6_car--640x640_quant_hailort_hailo8l_1       | Car Detection          | Hailo-8L         |
 | yolov8n_relu6_face--640x640_quant_hailort_hailo8_1       | Face Detection         | Hailo-8          |
@@ -62,8 +66,15 @@ The `model_name` argument in PySDK functions can take any of the values returned
 | yolov8n_relu6_lp--640x640_quant_hailort_hailo8_1         | License Plate Detection | Hailo-8        |
 | yolov8n_relu6_lp--640x640_quant_hailort_hailo8l_1        | License Plate Detection | Hailo-8L       |
 | yolov8n_relu6_person--640x640_quant_hailort_hailo8_1     | Person Detection       | Hailo-8          |
+| yolov8n_relu6_person--640x640_quant_hailort_hailo8l_1     | Person Detection       | Hailo-8L          |
 | yolov8n_relu6_ppe--640x640_quant_hailort_hailo8_1        | PPE Detection          | Hailo-8          |
 | yolov8n_relu6_ppe--640x640_quant_hailort_hailo8l_1       | PPE Detection          | Hailo-8L         |
+| scrfd_10g--640x640_quant_hailort_hailo8_1                | Face Detection         | Hailo-8           |
+| scrfd_10g--640x640_quant_hailort_hailo8l_1                | Face Detection         | Hailo-8L           |
+| scrfd_2.5g10g--640x640_quant_hailort_hailo8_1                | Face Detection         | Hailo-8           |
+| scrfd_2.5g10g--640x640_quant_hailort_hailo8l_1                | Face Detection         | Hailo-8L           |
+| scrfd_500m--640x640_quant_hailort_hailo8_1                | Face Detection         | Hailo-8           |
+| scrfd_500m--640x640_quant_hailort_hailo8l_1                | Face Detection         | Hailo-8L           |
 
 ## Keypoint Detection Models
 
