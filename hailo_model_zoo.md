@@ -27,63 +27,66 @@ The `model_name` argument in PySDK functions can take any of the values returned
 
 ## Classification Models
 
-| Model Name                                     | Application              | Supported Device |
-|-----------------------------------------------|--------------------------|------------------|
-| yolov8n_relu6_fairface_gender--256x256_quant_hailort_hailo8_1 | Gender Classification  | Hailo-8          |
-| yolov8n_relu6_fairface_gender--256x256_quant_hailort_hailo8l_1 | Gender Classification  | Hailo-8L         |
-| yolov8s_silu_imagenet--224x224_quant_hailort_hailo8_1    | ImageNet Classification | Hailo-8          |
-| yolov8s_silu_imagenet--224x224_quant_hailort_hailo8l_1   | ImageNet Classification | Hailo-8L         |
+| Model Name                                                        | Application               | Supported Device |
+|-------------------------------------------------------------------|---------------------------|------------------|
+| yolov8n_relu6_fairface_gender--256x256_quant_hailort_hailo8_1     | Gender Classification     | Hailo-8          |
+| yolov8n_relu6_fairface_gender--256x256_quant_hailort_hailo8l_1    | Gender Classification     | Hailo-8L         |
+| yolov8s_silu_imagenet--224x224_quant_hailort_hailo8_1             | ImageNet Classification   | Hailo-8          |
+| yolov8s_silu_imagenet--224x224_quant_hailort_hailo8l_1            | ImageNet Classification   | Hailo-8L         |
 
 ## Regression Models
 
-| Model Name                                     | Application              | Supported Device |
-|-----------------------------------------------|--------------------------|------------------|
-| yolov8n_relu6_age--256x256_quant_hailort_hailo8_1        | Age Prediction         | Hailo-8          |
-| yolov8n_relu6_age--256x256_quant_hailort_hailo8l_1        | Age Prediction         | Hailo-8L          |
+| Model Name                                                | Application               | Supported Device |
+|-----------------------------------------------------------|---------------------------|------------------|
+| yolov8n_relu6_age--256x256_quant_hailort_hailo8_1         | Age Prediction            | Hailo-8          |
+| yolov8n_relu6_age--256x256_quant_hailort_hailo8l_1        | Age Prediction            | Hailo-8L         |
 
 ## Detection Models
 
 | Model Name                                     | Application              | Supported Device |
 |-----------------------------------------------|--------------------------|------------------|
-| yolov8n_relu6_coco--640x640_quant_hailort_hailo8_1       | COCO Object Detection  | Hailo-8          |
-| yolov8n_relu6_coco--640x640_quant_hailort_hailo8l_1      | COCO Object Detection  | Hailo-8L         |
-| yolov8n_silu_coco--640x640_quant_hailort_hailo8_1        | COCO Object Detection  | Hailo-8          |
-| yolov8n_silu_coco--640x640_quant_hailort_hailo8l_1       | COCO Object Detection  | Hailo-8L         |
-| yolo11n_silu_coco--640x640_quant_hailort_hailo8_1        | COCO Object Detection  | Hailo-8           |
-| yolo11n_silu_coco--640x640_quant_hailort_hailo8l_1        | COCO Object Detection  | Hailo-8L           |
-| yolo11s_silu_coco--640x640_quant_hailort_hailo8_1        | COCO Object Detection  | Hailo-8           |
-| yolo11n_silu_coco--640x640_quant_hailort_hailo8l_1        | COCO Object Detection  | Hailo-8L           |
-| yolov8n_relu6_car--640x640_quant_hailort_hailo8_1        | Car Detection          | Hailo-8          |
-| yolov8n_relu6_car--640x640_quant_hailort_hailo8l_1       | Car Detection          | Hailo-8L         |
-| yolov8n_relu6_face--640x640_quant_hailort_hailo8_1       | Face Detection         | Hailo-8          |
-| yolov8n_relu6_face--640x640_quant_hailort_hailo8l_1      | Face Detection         | Hailo-8L         |
-| yolov8n_relu6_fire_smoke--640x640_quant_hailort_hailo8_1 | Fire and Smoke Detection | Hailo-8        |
-| yolov8n_relu6_fire_smoke--640x640_quant_hailort_hailo8l_1 | Fire and Smoke Detection | Hailo-8L       |
-| yolov8n_relu6_hand--640x640_quant_hailort_hailo8_1       | Hand Detection         | Hailo-8          |
-| yolov8n_relu6_hand--640x640_quant_hailort_hailo8l_1      | Hand Detection         | Hailo-8L         |
-| yolov8n_relu6_human_head--640x640_quant_hailort_hailo8_1 | Human Head Detection   | Hailo-8          |
-| yolov8n_relu6_human_head--640x640_quant_hailort_hailo8l_1 | Human Head Detection  | Hailo-8L         |
-| yolov8n_relu6_lp--640x640_quant_hailort_hailo8_1         | License Plate Detection | Hailo-8        |
-| yolov8n_relu6_lp--640x640_quant_hailort_hailo8l_1        | License Plate Detection | Hailo-8L       |
-| yolov8n_relu6_person--640x640_quant_hailort_hailo8_1     | Person Detection       | Hailo-8          |
-| yolov8n_relu6_person--640x640_quant_hailort_hailo8l_1     | Person Detection       | Hailo-8L          |
-| yolov8n_relu6_ppe--640x640_quant_hailort_hailo8_1        | PPE Detection          | Hailo-8          |
-| yolov8n_relu6_ppe--640x640_quant_hailort_hailo8l_1       | PPE Detection          | Hailo-8L         |
-| scrfd_10g--640x640_quant_hailort_hailo8_1                | Face Detection         | Hailo-8           |
-| scrfd_10g--640x640_quant_hailort_hailo8l_1                | Face Detection         | Hailo-8L           |
-| scrfd_2.5g10g--640x640_quant_hailort_hailo8_1                | Face Detection         | Hailo-8           |
-| scrfd_2.5g10g--640x640_quant_hailort_hailo8l_1                | Face Detection         | Hailo-8L           |
-| scrfd_500m--640x640_quant_hailort_hailo8_1                | Face Detection         | Hailo-8           |
-| scrfd_500m--640x640_quant_hailort_hailo8l_1                | Face Detection         | Hailo-8L           |
+| yolov8n_relu6_coco--640x640_quant_hailort_hailo8_1            | COCO Object Detection     | Hailo-8           |
+| yolov8n_relu6_coco--640x640_quant_hailort_hailo8l_1           | COCO Object Detection     | Hailo-8L          |
+| yolov8n_silu_coco--640x640_quant_hailort_hailo8_1             | COCO Object Detection     | Hailo-8           |
+| yolov8n_silu_coco--640x640_quant_hailort_hailo8l_1            | COCO Object Detection     | Hailo-8L          |
+| yolo11n_silu_coco--640x640_quant_hailort_hailo8_1             | COCO Object Detection     | Hailo-8           |
+| yolo11n_silu_coco--640x640_quant_hailort_hailo8l_1            | COCO Object Detection     | Hailo-8L          |
+| yolo11s_silu_coco--640x640_quant_hailort_hailo8_1             | COCO Object Detection     | Hailo-8           |
+| yolo11s_silu_coco--640x640_quant_hailort_hailo8l_1            | COCO Object Detection     | Hailo-8L          |
+| yolov8n_relu6_car--640x640_quant_hailort_hailo8_1             | Car Detection             | Hailo-8           |
+| yolov8n_relu6_car--640x640_quant_hailort_hailo8l_1            | Car Detection             | Hailo-8L          |
+| yolov8n_relu6_face--640x640_quant_hailort_hailo8_1            | Face Detection            | Hailo-8           |
+| yolov8n_relu6_face--640x640_quant_hailort_hailo8l_1           | Face Detection            | Hailo-8L          |
+| yolov8n_relu6_fire_smoke--640x640_quant_hailort_hailo8_1      | Fire and Smoke Detection  | Hailo-8           |
+| yolov8n_relu6_fire_smoke--640x640_quant_hailort_hailo8l_1     | Fire and Smoke Detection  | Hailo-8L          |
+| yolov8n_relu6_hand--640x640_quant_hailort_hailo8_1            | Hand Detection            | Hailo-8           |
+| yolov8n_relu6_hand--640x640_quant_hailort_hailo8l_1           | Hand Detection            | Hailo-8L          |
+| yolov8n_relu6_human_head--640x640_quant_hailort_hailo8_1      | Human Head Detection      | Hailo-8           |
+| yolov8n_relu6_human_head--640x640_quant_hailort_hailo8l_1     | Human Head Detection      | Hailo-8L          |
+| yolov8n_relu6_lp--640x640_quant_hailort_hailo8_1              | License Plate Detection   | Hailo-8           |
+| yolov8n_relu6_lp--640x640_quant_hailort_hailo8l_1             | License Plate Detection   | Hailo-8L          |
+| yolov8n_relu6_person--640x640_quant_hailort_hailo8_1          | Person Detection          | Hailo-8           |
+| yolov8n_relu6_person--640x640_quant_hailort_hailo8l_1         | Person Detection          | Hailo-8L          |
+| yolov8n_relu6_ppe--640x640_quant_hailort_hailo8_1             | PPE Detection             | Hailo-8           |
+| yolov8n_relu6_ppe--640x640_quant_hailort_hailo8l_1            | PPE Detection             | Hailo-8L          |
 
 ## Keypoint Detection Models
 
-| Model Name                                     | Application              | Supported Device |
-|-----------------------------------------------|--------------------------|------------------|
-| yolov8n_relu6_coco_pose--640x640_quant_hailort_hailo8_1 | Pose Detection | Hailo-8        |
-| yolov8n_relu6_coco_pose--640x640_quant_hailort_hailo8l_1| Pose Detection | Hailo-8L       |
-| yolov8n_relu6_widerface_kpts--640x640_quant_hailort_hailo8_1 | Face with Keypoints | Hailo-8        |
-| yolov8n_relu6_widerface_kpts--640x640_quant_hailort_hailo8l_1 | Face with Keypoints | Hailo-8L       |
+| Model Name                                                    | Application           | Supported Device  |
+|---------------------------------------------------------------|-----------------------|-------------------|
+| yolov8n_relu6_coco_pose--640x640_quant_hailort_hailo8_1       | Pose Detection        | Hailo-8           |
+| yolov8n_relu6_coco_pose--640x640_quant_hailort_hailo8l_1      | Pose Detection        | Hailo-8L          |
+| yolov8n_relu6_widerface_kpts--640x640_quant_hailort_hailo8_1  | Face with Keypoints   | Hailo-8           |
+| yolov8n_relu6_widerface_kpts--640x640_quant_hailort_hailo8l_1 | Face with Keypoints   | Hailo-8L          |
+| scrfd_10g--640x640_quant_hailort_hailo8_1                     | Face with Keypoints   | Hailo-8           |
+| scrfd_10g--640x640_quant_hailort_hailo8l_1                    | Face with Keypoints   | Hailo-8L          |
+| scrfd_2.5g10g--640x640_quant_hailort_hailo8_1                 | Face with Keypoints   | Hailo-8           |
+| scrfd_2.5g10g--640x640_quant_hailort_hailo8l_1                | Face with Keypoints   | Hailo-8L          |
+| scrfd_500m--640x640_quant_hailort_hailo8_1                    | Face with Keypoints   | Hailo-8           |
+| scrfd_500m--640x640_quant_hailort_hailo8l_1                   | Face with Keypoints   | Hailo-8L          |
+| retinaface_mobilenet--736x1280_quant_hailort_hailo8_1         | Face with Keypoints   | Hailo-8           |    
+| retinaface_mobilenet--736x1280_quant_hailort_hailo8l_1        | Face with Keypoints   | Hailo-8L          |    
+
 
 ## Instance Segmentation Models
 
