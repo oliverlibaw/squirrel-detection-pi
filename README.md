@@ -34,8 +34,13 @@ These tools are designed to be hardware-agnostic, enabling developers to build s
 
 ## Prerequisites
 
-- **Hailo Tools Installed**: Ensure that Hailo's tools and SDK are properly installed and configured. Refer to [Hailo's documentation](https://hailo.ai/) for detailed setup instructions.
+- **Hailo Tools Installed**: Ensure that Hailo's tools and SDK are properly installed and configured. Refer to [Hailo's documentation](https://hailo.ai/) for detailed setup instructions. Also, enable the HailoRT Multi-Process service, as per HailoRT documentation:
+  
+  ```bash
+  sudo systemctl enable --now hailort.service  # for Ubuntu
+  ```
 - **Python 3.9 or Later**: Ensure Python is installed on your system. You can check your Python version using:
+  
   ```bash
   python3 --version
   ```
