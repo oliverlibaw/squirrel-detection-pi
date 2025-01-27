@@ -3,15 +3,33 @@
 This guide is for ML developers who want to learn how to configure DeGirum PySDK to load a precompiled model and run inference on a Hailo device. Instead of a "just run this magic two line script" approach, we’ll focus on the essential details and steps involved. By the end of this guide, you’ll have a solid understanding of how to work with precompiled models and adapt the process to your needs.
 
 ---
+
 ## What You'll Need to Begin  
 
-To follow this guide, you’ll need a machine equipped with a Hailo AI accelerator, either Hailo8 or Hailo8L. The host CPU can be an Intel x86 system or a Raspberry Pi. Before diving in, make sure the necessary drivers and software tools are installed correctly. You can find the setup instructions here: [Hailo + PySDK setup instructions](https://github.com/DeGirum/hailo_examples/blob/main/README.md).  
+To follow this guide, you’ll need a machine equipped with a Hailo AI accelerator, either Hailo8 or Hailo8L. The host CPU can be an x86 system or an Arm based system (like Raspberry Pi). Before diving in, make sure the necessary drivers and software tools are installed correctly. You can find the setup instructions here: [Hailo + PySDK setup instructions](https://github.com/DeGirum/hailo_examples/blob/main/README.md).  
 
 Here’s what else you’ll need:  
+
 1. **A Model File (`.hef`)**: This is the compiled model for Hailo hardware. We’ll be using the `mobilenet_v2_1.0` classification model, available for Hailo8 devices at [Hailo8 Classification Models](https://github.com/hailo-ai/hailo_model_zoo/blob/master/docs/public_models/HAILO8/HAILO8_classification.rst).  
-2. **An Input Image**: The image you want to process using the model. For this guide, we’ll use a cat image, which you can download from [Cat Image](https://raw.githubusercontent.com/DeGirum/hailo_examples/refs/heads/main/assets/Cat.jpg). Save it locally for use in the code.  
+2. **An Input Image**: The image you want to process using the model. For this guide, we’ll use a cat image, which you can download from [Cat Image](https://raw.githubusercontent.com/DeGirum/hailo_examples/refs/heads/main/assets/Cat.jpg).  
+3. **A Labels File (`labels_ILSVRC2012_1000.json`)**: This file maps class indices to human-readable labels for ImageNet. You can download it from [Hugging Face](https://huggingface.co/datasets/huggingface/label-files/blob/main/imagenet-1k-id2label.json).  
+
+Download these assets and keep them handy, as you’ll use them throughout this guide.
 
 ---  
+
+### Summary  
+
+In this guide, we’ll walk you through the steps to run inference on a Hailo device using DeGirum PySDK. Here’s what we’ll cover:  
+
+- **Loading a Model with DeGirum PySDK**: Learn how to use the `load_model` function to configure and load a precompiled model in PySDK.  
+- **Understanding the Model JSON File**: Explore how the model JSON file defines key configurations for pre-processing, model parameters, and post-processing.  
+- **Preparing the Model Zoo**: Organize the model files (`.json`, `.hef`, and labels file) for seamless use with PySDK.  
+- **Running Inference**: Write Python code to load the model, preprocess the input, run inference, and process the output manually.  
+- **Leveraging Built-in PySDK Features**: Replace manual pipelines with PySDK’s built-in pre-processing and post-processing features, simplifying your workflow.  
+
+By the end of this guide, you’ll have a comprehensive understanding of how to configure, load, and run both manual and optimized pipelines using PySDK.  
+
 ## Loading a Model with DeGirum PySDK  
 
 The starting point for running inference with DeGirum PySDK is the **`load_model`** function. This function loads an ML model and returns a model object, which you can use to run inferences. For this guide, the function takes three arguments:  
@@ -22,7 +40,7 @@ The starting point for running inference with DeGirum PySDK is the **`load_model
    - **`ai_server_ip`**: Runs inference on an AI server.  
    - **`@cloud`**: Runs inference on devices hosted in the DeGirum AI Hub.  
    For this guide, we’ll use **`@local`** since we are working with a Hailo8 accelerator attached to our machine.  
-3. **`zoo_url`**: Points to the model zoo containing model artifacts. For local inference, this is the path to the folder with all required artifacts. Each model in the zoo has a JSON file containing metadata like preprocessing steps, model parameters, and postprocessing details.  
+3. **`zoo_url`**: Points to the model zoo containing model assets. For local inference, this is the path to the directory with all required assets. Each model in the zoo has a JSON file containing metadata like preprocessing steps, model parameters, and postprocessing details.  
 
 ---
 
@@ -96,12 +114,13 @@ Defines how to handle the model’s raw output. In this guide, `OutputPostproces
 
 ## Preparing the Model Zoo  
 
-Now that you understand the structure of the model JSON file, it’s time to organize your model artifacts. Choose a folder where you want to store all the artifacts for your models.  
+Now that you understand the structure of the model JSON file, it’s time to organize your model assets. Choose a directory where you want to store all the assets for your models.  
 
 1. Copy the JSON configuration example above into a file named `mobilenet_v2_1.0.json`.  
-2. Place the corresponding `mobilenet_v2_1.0.hef` file in the same folder.  
+2. Place the corresponding `mobilenet_v2_1.0.hef` file in the same directory.  
+3. Place the labels file in the same directory
 
-If you prefer to organize models into separate folders for easier maintenance, you can create a dedicated folder for each model and store its artifacts there. PySDK will automatically search for model JSON files in all sub-folders of the specified `zoo_url`.  
+If you prefer to organize models into separate directories for easier maintenance, you can create a dedicated directory for each model and store its assets there. PySDK will automatically search for model JSON files in all sub-directories of the specified `zoo_url`.  
 
 ---
 
@@ -270,7 +289,7 @@ def postprocess_classification_output(output, labels_file, topk=5):
 
 ### Top-5 Predictions  
 
-You can download the ImageNet labels file from [Hugging Face](https://huggingface.co/datasets/huggingface/label-files/blob/main/imagenet-1k-id2label.json) and use the above function as follows:  
+You can use the above function to get the top 5 predictions as follows:  
 
 ```python
 top5_predictions = postprocess_classification_output(inference_result.results, '<path_to_labels_file>', topk=5)
@@ -294,7 +313,7 @@ With this workflow, you can run inference on any compiled model using Hailo devi
 
 ---
 
-## Comments  
+## Leveraging Built-in PySDK Features  
 
 The code provided in this guide is instructive and easy to follow but not practical for production systems. Developers often write boilerplate code for tasks like pre-processing and post-processing for each model, leading to scattered snippets that must be carried along with the application code. Over time, this approach becomes cumbersome, and developers start building structured classes to avoid repetition, which can eventually balloon into a development effort of its own.  
 
@@ -347,7 +366,7 @@ To illustrate the power of PySDK, here’s an example of a modified JSON configu
 
 1. Save this modified JSON file as `mobilenet_v2_1.0_optimized.json` in your model zoo directory.  
 
-2. Ensure that the corresponding `.hef` file (`mobilenet_v2_1.0.hef`) and the labels file (`labels_ILSVRC2012_1000.json`) are also present in the same model zoo folder.  
+2. Ensure that the corresponding `.hef` file (`mobilenet_v2_1.0.hef`) and the labels file (`labels_ILSVRC2012_1000.json`) are also present in the same model zoo directory.  
 
 3. Update your Python code to use this new JSON file by specifying the updated `model_name` and `zoo_url`.  
 
