@@ -18,15 +18,15 @@ Download these assets and keep them handy, as you’ll use them throughout this 
 
 ---  
 
-### Summary  
+## Summary  
 
 In this guide, we’ll walk you through the steps to run inference on a Hailo device using DeGirum PySDK. Here’s what we’ll cover:  
 
-- **Loading a Model with DeGirum PySDK**: Learn how to use the `load_model` function to configure and load a precompiled model in PySDK.  
-- **Understanding the Model JSON File**: Explore how the model JSON file defines key configurations for pre-processing, model parameters, and post-processing.  
-- **Preparing the Model Zoo**: Organize the model files (`.json`, `.hef`, and labels file) for seamless use with PySDK.  
-- **Running Inference**: Write Python code to load the model, preprocess the input, run inference, and process the output manually.  
-- **Leveraging Built-in PySDK Features**: Replace manual pipelines with PySDK’s built-in pre-processing and post-processing features, simplifying your workflow.  
+- [Loading a Model with DeGirum PySDK](#loading-a-model-with-degirum-pysdk): Learn how to use the `load_model` function to configure and load a precompiled model in PySDK.  
+- [Understanding the Model JSON File](#understanding-the-model-json-file): Explore how the model JSON file defines key configurations for pre-processing, model parameters, and post-processing.  
+- [Preparing the Model Zoo](#preparing-the-model-zoo): Organize the model files (`.json`, `.hef`, and labels file) for seamless use with PySDK.  
+- [Running Inference](#running-inference): Write Python code to load the model, preprocess the input, run inference, and process the output manually.  
+- [Leveraging Built-in PySDK Features](#leveraging-built-in-pysdk-features): Replace manual pipelines with PySDK’s built-in pre-processing and post-processing features, simplifying your workflow.  
 
 By the end of this guide, you’ll have a comprehensive understanding of how to configure, load, and run both manual and optimized pipelines using PySDK.  
 
