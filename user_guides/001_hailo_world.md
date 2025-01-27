@@ -131,12 +131,12 @@ The `mobilenet_v2_1.0` model takes a **UINT8 array** of size `[1, 224, 224, 3]` 
 ### Utility Function to Prepare Input  
 
 ```python
-from PIL import Image
+import cv2
 import numpy as np
 
 def resize_image_to_given_shape(image_path, input_shape=(1, 224, 224, 3)):
     """
-    Reads an image, resizes it to match the input shape, and ensures it matches the specified size.
+    Reads an image using OpenCV, resizes it with INTER_LINEAR interpolation, and ensures it matches the specified size.
 
     Args:
         image_path (str): Path to the input image.
@@ -147,15 +147,24 @@ def resize_image_to_given_shape(image_path, input_shape=(1, 224, 224, 3)):
     """
     if len(input_shape) != 4 or input_shape[0] != 1 or input_shape[3] != 3:
         raise ValueError("Input shape must be in the format (1, height, width, 3).")
-
-    image = Image.open(image_path).convert("RGB")
-    resized_image = image.resize((input_shape[2], input_shape[1]))
-    image_array = np.array(resized_image)
-
-    if image_array.shape != (input_shape[1], input_shape[2], input_shape[3]):
-        raise ValueError(f"Resized image has an unexpected shape: {image_array.shape}")
-
-    return np.expand_dims(image_array, axis=0)
+    
+    # Read the image using OpenCV
+    image = cv2.imread(image_path)
+    
+    if image is None:
+        raise FileNotFoundError(f"Image at path '{image_path}' could not be loaded.")
+    
+    # Convert BGR to RGB
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    
+    # Resize the image using INTER_LINEAR interpolation
+    resized_image = cv2.resize(image, (input_shape[2], input_shape[1]), interpolation=cv2.INTER_LINEAR)
+    
+    if resized_image.shape != (input_shape[1], input_shape[2], input_shape[3]):
+        raise ValueError(f"Resized image has an unexpected shape: {resized_image.shape}")
+    
+    # Expand dimensions to match the batch size
+    return np.expand_dims(resized_image, axis=0)
 ```
 
 ### Running Inference  
@@ -299,11 +308,11 @@ pprint(top5_predictions)
 ### Example Output  
 
 ```bash
-[{'category_id': 285, 'label': 'Egyptian cat', 'score': 0.38823533},
- {'category_id': 282, 'label': 'tiger cat', 'score': 0.23529413},
- {'category_id': 281, 'label': 'tabby, tabby cat', 'score': 0.09411766},
- {'category_id': 287, 'label': 'lynx, catamount', 'score': 0.08627451},
- {'category_id': 527, 'label': 'desktop computer', 'score': 0.003921569}]
+[{'category_id': 285, 'label': 'Egyptian cat', 'score': 0.20000002},
+ {'category_id': 287, 'label': 'lynx, catamount', 'score': 0.16078432},
+ {'category_id': 282, 'label': 'tiger cat', 'score': 0.14117648},
+ {'category_id': 281, 'label': 'tabby, tabby cat', 'score': 0.121568635},
+ {'category_id': 189, 'label': 'Lakeland terrier', 'score': 0.011764707}]
 ```
 --- 
 
@@ -336,9 +345,9 @@ To illustrate the power of PySDK, here’s an example of a modified JSON configu
   "PRE_PROCESS": [
     {
       "InputType": "Image",
-      "ImageBackend": "pil",
+      "ImageBackend": "opencv",
       "InputPadMethod": "stretch",
-      "InputResizeMethod": "bicubic",
+      "InputResizeMethod": "bilinear",
       "InputN": 1,
       "InputH": 224,
       "InputW": 224,
