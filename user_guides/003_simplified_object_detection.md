@@ -351,7 +351,7 @@ Below is a list of supported models for reference:
 | yolov8m.hef        | yolov8n.hef            | yolov8s.hef             |
 | yolov8x.hef        | yolov9c.hef            | yolox_l_leaky.hef       |
 | yolox_s_leaky.hef  | yolox_s_wide_leaky.hef | yolox_tiny.hef          |
-|   |   |   |
+
 
 The same post-processor work for the 5 models below as well but the **efficientdet** models have **89** output classes and **ssd_mobilenet** models have **90** output classes. For these models, the appropriate labels file should be used. These models are listed below:
 
@@ -362,7 +362,7 @@ The same post-processor work for the 5 models below as well but the **efficientd
 | efficientdet_lite2   | 89                |
 | ssd_mobilenet_v1     | 90                |
 | ssd_mobilenet_v2     | 90                |
-|   |   |   |
+
 
 The above lists together cover 41 of the 56 models available in the [object detection model zoo](https://github.com/hailo-ai/hailo_model_zoo/blob/master/docs/public_models/HAILO8/HAILO8_object_detection.rst). The remaining 15 models listed below require their own post-processors. We will cover them in later user guides.
 
@@ -373,7 +373,7 @@ The above lists together cover 41 of the 56 models available in the [object dete
 | detr_resnet_v1_50                  | tiny_yolov3                      | tiny_yolov4            |
 | yolov3                           | yolov3_416                       | yolov3_gluon           |
 | yolov3_gluon_416                 | yolov4_leaky                     | yolov6n_0.2.1          |
-|   |   |   |
+
 
 ### Custom Models
 The method described in this guide is not limited to precompiled models from the Hailo model zoo. It works equally well with custom models. If you plan to deploy your own object detection models, make sure to adjust the JSON configuration with the correct values. In particular, update the __OutputNumClasses__ field to match the number of classes your model detects and provide an appropriate labels file in the __LabelsPath__ field. This ensures that the post-processor correctly interprets the raw output and maps class indices to human-readable labels.
