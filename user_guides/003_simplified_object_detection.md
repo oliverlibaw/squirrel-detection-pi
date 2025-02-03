@@ -317,7 +317,7 @@ cv2.destroyAllWindows()  # Close all OpenCV windows.
 
 An example of the output is shown below:
 
-![cat_overlay_original](../assets/cat_overlay_pysdk.png)
+![cat_overlay_original](../assets/cat_overlay_pysdk.PNG)
 
 ---
 
