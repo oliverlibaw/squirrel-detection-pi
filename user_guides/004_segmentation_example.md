@@ -65,7 +65,25 @@ Ensure you have the following prerequisites:
    A file mapping the 80 COCO classes to human-readable labels. You can download this from [Hugging Face](https://huggingface.co/datasets/huggingface/label-files/blob/main/coco-detection-mmdet-id2label.json) or another trusted source.
 
 ---
+## Summary
 
+We’ll walk you through the key steps to run segmentation inference on a Hailo device using DeGirum PySDK:
+
+- **Configuring the Model JSON File**:  
+  Set up your JSON file to define pre-processing parameters, specify the segmentation model file, and enable the built-in C++ postprocessing (using `"OutputPostprocessType": "SegmentationYoloV8"`). This section also covers setting the number of classes, a confidence threshold, and the `"SigmoidOnCLS"` flag if required by your model.
+
+- **Preparing the Model Zoo**:  
+  Organize your model assets—including the JSON configuration file, the `.hef` model file, and the COCO labels file—into a structured directory for easy access and management by PySDK.
+
+- **Running Inference**:  
+  Load the segmentation model from the model zoo, execute inference on an input image, and obtain a segmentation overlay that visually represents the segmentation masks along with human-readable class labels.
+
+- **Visualizing the Output**:  
+  Use tools such as OpenCV to display the segmentation overlay, enabling you to review and analyze the segmented regions.
+
+By following these steps, you can seamlessly deploy and visualize YOLOv8/YOLO11 segmentation models on Hailo devices using PySDK.
+
+---
 ## Configuring the Model JSON File
 
 Since the segmentation postprocessing is integrated in C++ with PySDK, the JSON configuration is straightforward. In addition to specifying pre-processing and the model file, you will also provide the COCO labels file, the number of classes, and a confidence threshold to filter low-probability detections.
