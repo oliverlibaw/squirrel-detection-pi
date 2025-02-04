@@ -1,4 +1,4 @@
-# Simplifying Image Segmentation on a Hailo Device Using DeGirum PySDK
+# Simplifying Instance Segmentation on a Hailo Device Using DeGirum PySDK
 
 This guide demonstrates how to leverage PySDK’s built-in segmentation postprocessing—integrated in C++—to run YOLOv8/YOLO11 segmentation models on Hailo devices. With minimal configuration, you can run inference and visualize segmentation outputs, including class labels. Although this example uses a model trained on the COCO dataset, the method works for any YOLOv8/YOLO11 segmentation model with appropriate modifications.
 
