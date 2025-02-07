@@ -1,6 +1,6 @@
 # Simplifying Object Detection on a Hailo Device Using DeGirum PySDK
 
-In this guide, we illustrate how to leverage the built-in features of PySDK to simplify running object detection models on Hailo devices with just a few lines of code. We encourage the user to review [User Guide 2](https://community.hailo.ai/t/user-guide-2-running-your-first-object-detection-model-on-a-hailo-device-using-degirum-pysdk/9728) before proceeding. By the end of this guide, you’ll understand how to integrate any precompiled object detection model (with Hailo NMS postprocessing) with DeGirum PySDK and adapt the process to your needs.
+In this guide, we illustrate how to leverage the built-in features of PySDK to simplify running object detection models on Hailo devices with just a few lines of code. We recommend reviewing [User Guide 2](https://community.hailo.ai/t/user-guide-2-running-your-first-object-detection-model-on-a-hailo-device-using-degirum-pysdk/9728) before proceeding. By the end of this guide, you’ll understand how to integrate any precompiled object detection model (with Hailo NMS postprocessing) with DeGirum PySDK and adapt the process to your needs.
 
 ---
 
@@ -8,7 +8,7 @@ In this guide, we illustrate how to leverage the built-in features of PySDK to s
 
 The overall inference pipeline in PySDK can be summarized as follows:
 
-1. **Pre-Processing**: Convert the input image into the correct format (e.g., resizing with letterboxing) before model inference.
+1. **Pre-Processing**: Prepare the input image by resizing and formatting it (e.g., applying letterboxing) to meet model requirements before inference.
 2. **Inference**: Run the precompiled model (e.g., `.hef` file) on the Hailo device.
 3. **Post-Processing**: Convert raw model outputs into human-readable detections (bounding boxes, labels, etc.) using a post-processor class.
 4. **Visualization**: Overlay the detection results onto the original image for easy inspection.

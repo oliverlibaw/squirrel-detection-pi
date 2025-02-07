@@ -17,7 +17,7 @@ For segmentation models, the inference pipeline consists of:
    Run the YOLOv8/YOLO11 segmentation model (compiled into a `.hef` file) on the Hailo device.
 
 3. **Post-Processing**:  
-   The integrated C++ postprocessing converts the model’s raw outputs into a segmentation mask overlay. By specifying `"OutputPostprocessType": "SegmentationYoloV8"` in the JSON configuration, you enable this processing. In this example, a COCO labels file is provided for human-readable output.
+   The integrated C++ postprocessing converts the model’s raw outputs into a segmentation mask overlay. To enable this processing, specify `"OutputPostprocessType": "SegmentationYoloV8"` in the JSON configuration. In this guide, a COCO labels file is provided for human-readable output.
 
 4. **Visualization**:  
    The processed segmentation overlay is provided as an image, which can be displayed using tools such as OpenCV.
@@ -59,7 +59,7 @@ Ensure you have the following prerequisites:
    A YOLOv8/YOLO11 segmentation model trained on COCO, compiled into a `.hef` file. For example, you can use `yolov8n_seg.hef` available at [Hailo Model Zoo](https://github.com/hailo-ai/hailo_model_zoo/blob/master/docs/public_models/HAILO8/HAILO8_instance_segmentation.rst).
 
 4. **Input Image**:  
-   An image on which to run segmentation. For instance, you can use a cat image downloaded from [Cat Image](https://raw.githubusercontent.com/DeGirum/hailo_examples/refs/heads/main/assets/Cat.jpg). Feel free to experiment with your own images.
+   An image on which to run segmentation. For instance, download this [Cat Image](https://raw.githubusercontent.com/DeGirum/hailo_examples/refs/heads/main/assets/Cat.jpg). Feel free to experiment with your own images.
 
 5. **COCO Labels File (`labels_coco.json`)**:  
    A file mapping the 80 COCO classes to human-readable labels. You can download this from [Hugging Face](https://huggingface.co/datasets/huggingface/label-files/blob/main/coco-detection-mmdet-id2label.json) or another trusted source.
@@ -142,7 +142,7 @@ Since the segmentation postprocessing is integrated in C++ with PySDK, the JSON 
   - `"LabelsPath": "labels_coco.json"` provides the COCO labels for human-readable output.
   - `"OutputNumClasses": 80` specifies the number of classes in the model.
   - `"OutputConfThreshold": 0.3` filters out detections below the confidence threshold.
-  - **SigmoidOnCLS Explanation**:  
+  - **Understanding SigmoidOnCLS**:  
     The `"SigmoidOnCLS": true` flag indicates that a sigmoid activation is applied on certain output layers. This flag is necessary when models are compiled with vendor-specific settings that apply sigmoid activations; adjust this flag as needed for your model.
 
 ---

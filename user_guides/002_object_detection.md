@@ -238,7 +238,7 @@ Running the above code results in the output below:
 Now let’s load the model, prepare the input image, and run inference:  
 
 ```python
-import degirum
+import degirum as dg
 from pprint import pprint
 
 # Load the model
@@ -273,7 +273,7 @@ The `inference_result` is of type `degirum.postprocessor.InferenceResults`. For 
   'type': 'DG_FLT'}]
 ```
 
-The output of `yolo11n` object detection model on Hailo is an array of size **40,080**, designed to handle up to 100 detections per class across 80 classes. Each detection contains 5 values: 4 for the bounding box coordinates (ymin, xmin, ymax, xmax) and 1 for the score. The array starts with an entry that specifies the number of detections for a class. If the number is zero, it indicates no detections for that class. If there are detections for a class, the next 5 *k* entries represent the information for those *k* detections, where each detection is described by its 4 bounding box coordinates and score. This structure allows for a maximum of 100 detections per class, and the total size of the array is 40,080 (501 entries for each of the 80 classes). While the Hailo model already has an in built postprocessor that performs bounding box decoding and non-max suppression (NMS), the above input still needs to be processed so that it results in a human readable format.
+The output of `yolo11n` object detection model on Hailo is an array of size **40,080**, designed to handle up to 100 detections per class across 80 classes. Each detection contains 5 values: 4 for the bounding box coordinates (ymin, xmin, ymax, xmax) and 1 for the score. The array starts with an entry that specifies the number of detections for a class. If the number is zero, it indicates no detections for that class. If there are detections for a class, the next 5 *k* entries represent the information for those *k* detections, where each detection is described by its 4 bounding box coordinates and score. This structure allows for a maximum of 100 detections per class, and the total size of the array is 40,080 (501 entries for each of the 80 classes). While the Hailo model already has a built-in postprocessor that performs bounding box decoding and non-max suppression (NMS), the above input still needs to be processed so that it results in a human readable format.
 
 ---
 

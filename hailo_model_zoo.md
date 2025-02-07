@@ -2,7 +2,7 @@
 
 DeGirum maintains a comprehensive model zoo optimized for Hailo-8 and Hailo-8L devices. The models are pre-quantized and fine-tuned for efficient inference on these hardware platforms. 
 
-DeGirum maintains a **public model zoo** at `degirum/models_hailort` on the DeGirum AI Hub. Users can access these models even without registering for the AI Hub.
+DeGirum maintains a **public model zoo** at `degirum/hailo` on the DeGirum AI Hub. Users can access these models even without registering for the AI Hub.
 
 DeGirum also offers the latest state-of-the-art enterprise models. You can reach out to DeGirum at this [link](https://degirum.atlassian.net/servicedesk/customer/portal/1/group/1/create/2) to request access.
 
@@ -18,12 +18,12 @@ import degirum_tools
 
 hailo_model_zoo = dg.connect(
     inference_host_address='@local',
-    zoo_url='degirum/models_hailort'    
+    zoo_url='degirum/hailo'    
 )
 
 print(hailo_model_zoo.list_models())
 ```
-The `model_name` argument in PySDK functions can take any of the values returned by the list_models function. Additionally, the `zoo_url` argument should be set to `degirum/models_hailort` to access the Hailo Model Zoo.
+The `model_name` argument in PySDK functions can take any of the values returned by the list_models function. Additionally, the `zoo_url` argument should be set to `degirum/hailo` to access the Hailo Model Zoo.
 
 ## Classification Models
 

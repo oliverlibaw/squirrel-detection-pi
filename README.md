@@ -143,7 +143,7 @@ Devices:
 degirum_cli predict-image \
     --inference-host-address @local \
     --model-name yolov8n_relu6_coco--640x640_quant_hailort_hailo8_1 \
-    --model-zoo-url degirum/models_hailort
+    --model-zoo-url degirum/hailo
 ```
 
 #### Windows
@@ -152,7 +152,7 @@ degirum_cli predict-image \
 degirum_cli predict-image ^
     --inference-host-address @local ^
     --model-name yolov8n_relu6_coco--640x640_quant_hailort_hailo8_1 ^
-    --model-zoo-url degirum/models_hailort
+    --model-zoo-url degirum/hailo
 ```
 
 ### Video Inference
@@ -163,7 +163,7 @@ degirum_cli predict-image ^
 degirum_cli predict-video \
     --inference-host-address @local \
     --model-name yolov8n_relu6_coco--640x640_quant_hailort_hailo8_1 \
-    --model-zoo-url degirum/models_hailort
+    --model-zoo-url degirum/hailo
 ```
 
 #### Windows
@@ -172,7 +172,7 @@ degirum_cli predict-video \
 degirum_cli predict-video ^
     --inference-host-address @local ^
     --model-name yolov8n_relu6_coco--640x640_quant_hailort_hailo8_1 ^
-    --model-zoo-url degirum/models_hailort
+    --model-zoo-url degirum/hailo
 ```
 
 ---
