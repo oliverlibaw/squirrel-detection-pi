@@ -5,7 +5,7 @@
         {
             "DeviceType": "HAILO8L",
             "RuntimeAgent": "HAILORT",
-            "SupportedDeviceTypes": "HAILORT/HAILO8L"
+            "SupportedDeviceTypes": "HAILORT/HAILO8L, HAILORT/HAILO8"
         }
     ],
     "PRE_PROCESS": [

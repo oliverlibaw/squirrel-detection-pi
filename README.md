@@ -1,191 +1,202 @@
-# Using DeGirum PySDK, DeGirum Tools, and DeGirum CLI with Hailo Hardware
 
-This repository provides a comprehensive guide on using DeGirum PySDK, DeGirum Tools, and DeGirum CLI with Hailo hardware for efficient AI inference. These tools simplify edge AI development by enabling seamless integration, testing, and deployment of AI models on multiple hardware platforms, including Hailo-8 and Hailo-8L.
+# **Using DeGirum PySDK, DeGirum Tools, and Hailo Hardware**  
 
----
-
-## Table of Contents
-
-1. [Introduction](#introduction)
-2. [Prerequisites](#prerequisites)
-3. [Setting Up the Environment](#setting-up-the-environment)
-   - [Linux/macOS](#linuxmacos)
-   - [Windows](#windows)
-4. [Installing DeGirum CLI](#installing-degirum-cli)
-5. [Verifying Installation](#verifying-installation)
-6. [Example Usage](#example-usage)
-   - [Image Inference](#image-inference)
-   - [Video Inference](#video-inference)
-7. [Additional Resources](#additional-resources)
+This repository provides a comprehensive guide on using **DeGirum PySDK**, **DeGirum Tools**, and **Hailo hardware** for efficient AI inference. These tools simplify edge AI development by enabling seamless integration, testing, and deployment of AI models on multiple hardware platforms, including **Hailo-8** and **Hailo-8L**.  
 
 ---
 
-## Introduction
+## **Table of Contents**  
 
-DeGirum provides a powerful suite of tools to simplify the development and deployment of edge AI applications:
-
-- [DeGirum PySDK](https://github.com/DeGirum/PySDKExamples): The core library for integrating AI inference capabilities into applications.
-- [DeGirum Tools](https://github.com/DeGirum/degirum_tools): Utilities for benchmarking, streaming, and interacting with DeGirum's model zoo.
-- [DeGirum CLI](https://pypi.org/project/degirum-cli/): A command-line interface for testing and managing AI models.
-
-These tools are designed to be hardware-agnostic, enabling developers to build scalable, flexible solutions without being locked into a specific platform.
+1. [Introduction](#introduction)  
+2. [Prerequisites](#prerequisites)  
+3. [Installation](#installation)  
+4. [Running and Configuring Jupyter Notebooks](#running-and-configuring-jupyter-notebooks) 
+5. [Additional Resources](#additional-resources) 
 
 ---
 
-## Prerequisites
+## **Introduction**  
 
-- **Hailo Tools Installed**: Ensure that Hailo's tools and SDK are properly installed and configured. Refer to [Hailo's documentation](https://hailo.ai/) for detailed setup instructions. Also, enable the HailoRT Multi-Process service, as per HailoRT documentation:
-  
+DeGirum provides a powerful suite of tools to simplify the development and deployment of edge AI applications:  
+
+- [**DeGirum PySDK**](https://github.com/DeGirum/PySDKExamples): The core library for integrating AI inference capabilities into applications.  
+- [**DeGirum Tools**](https://github.com/DeGirum/degirum_tools): Utilities for benchmarking, streaming, and interacting with DeGirum's model zoo.  
+
+These tools are designed to be hardware-agnostic, enabling developers to build scalable, flexible solutions without being locked into a specific platform.  
+
+---
+
+## **Prerequisites**  
+
+- **Hailo Tools Installed**: Ensure that Hailo's tools and SDK are properly installed and configured. Refer to [Hailo's documentation](https://hailo.ai/) for detailed setup instructions. Also, enable the HailoRT Multi-Process service as per HailoRT documentation:  
+
   ```bash
   sudo systemctl enable --now hailort.service  # for Ubuntu
-  ```
-- **Python 3.9 or Later**: Ensure Python is installed on your system. You can check your Python version using:
-  
+  ```  
+
+- **Hailo Runtime Compatibility**:  
+  DeGirum PySDK supports **Hailo Runtime versions 4.19.0 and 4.20.0**. Ensure your Hailo environment is configured to use one of these versions.  
+
+- **Python 3.9 or Later**: Ensure Python is installed on your system. You can check your Python version using:  
+
   ```bash
   python3 --version
-  ```
+  ```  
 
 ---
 
-## Setting Up the Environment
+## **Installation**  
 
-To keep your Python environment clean and avoid conflicts, it's recommended to use a virtual environment for installing the required packages.
+The best way to get started is to **clone this repository** and set up a virtual environment to keep dependencies organized. Follow these steps:  
 
-### Linux/macOS
+### **1. Clone the Repository**  
+```bash
+git clone https://github.com/DeGirum/hailo_examples.git
+cd hailo_examples
+```  
 
-1. Navigate to the directory where you'd like to create the environment.
-2. Run the following commands:
-   ```bash
-   python3 -m venv degirum_env
-   source degirum_env/bin/activate
-   ```
+### **2. Create a Virtual Environment**  
+To keep the Python environment isolated, create a virtual environment:  
 
-### Windows
+#### **Linux/macOS**  
+```bash
+python3 -m venv degirum_env
+source degirum_env/bin/activate
+```  
 
-1. Navigate to the directory where you'd like to create the environment.
-2. Run the following commands:
-   ```bash
-   python3 -m venv degirum_env
-   degirum_env\Scripts\activate
-   ```
+#### **Windows**  
+```bash
+python3 -m venv degirum_env
+degirum_env\Scripts\activate
+```  
 
-### Update `pip`
-
-Ensure `pip` is up-to-date within your virtual environment:
+### **3. Install Required Dependencies**  
+Install all necessary packages from `requirements.txt`:  
 
 ```bash
-pip install --upgrade pip
-```
+pip install -r requirements.txt
+```  
 
 ---
 
-## Installing DeGirum CLI
+### **4. Add Virtual Environment to Jupyter**  
 
-Install the DeGirum CLI package from PyPI using `pip`. This package includes `degirum`, `degirum_tools`, and `degirum_cli` for easy testing and development:
+If you plan to use **Jupyter Notebooks**, ensure the virtual environment is available as a Jupyter kernel.  
+
+#### **Step 1: Activate the Virtual Environment (if not already active)**  
+If you are not already inside the virtual environment, activate it:  
+
+**Linux/macOS:**  
+```bash
+source degirum_env/bin/activate
+```  
+
+**Windows:**  
+```bash
+degirum_env\Scripts\activate
+```  
+
+#### **Step 2: Ensure the Virtual Environment is Available in Jupyter**  
+Since `notebook` and `ipykernel` are already installed via `requirements.txt`, simply run:  
 
 ```bash
-pip install degirum_cli
-```
+python -m ipykernel install --user --name=degirum_env --display-name "Python (degirum_env)"
+```  
 
-This will automatically install:
-- **`degirum`**: The core PySDK library for AI inference.
-- **`degirum_tools`**: Additional tools for streaming, benchmarking, and other utilities.
-- **`degirum_cli`**: A command-line interface for interacting with DeGirum PySDK.
+This ensures that Jupyter recognizes the virtual environment as an available kernel.  
 
 ---
 
-## Verifying Installation
+### **5. Verify Installation**  
 
-To verify the installation, run the following commands:
-
-### Check CLI Installation
+To ensure that everything is set up correctly, run the provided test script:  
 
 ```bash
-degirum_cli --help
-```
+python test.py
+```  
 
-You should see a list of available commands and their usage.
+This script will:  
+- Check system information.  
+- Verify that Hailo hardware is recognized.  
+- Load and run inference with a sample AI model.  
 
-### Check Hailo Hardware Integration
+If the test runs successfully, your environment is properly configured.  
 
-Run the following command to verify that the Hailo hardware is recognized by the DeGirum package:
+
+## **Running and Configuring Jupyter Notebooks**  
+
+This repository includes an `examples` folder containing multiple use case examples demonstrating how to run AI inference using DeGirum PySDK and Hailo hardware. You can find detailed descriptions and usage instructions for each example in the [**Examples README**](examples/README.md).  
+
+### **1. Start Jupyter Notebook**  
+Now that the Jupyter environment is set up, you can start Jupyter Notebook:  
 
 ```bash
-degirum sys-info
-```
+jupyter notebook
+```  
 
-Look for `hailort` in the output to ensure the Hailo hardware is properly integrated. Below is an example output when Hailo hardware is detected:
+This will open Jupyter in your web browser, allowing you to navigate to the `examples` folder and run the available notebooks.  
 
-```
-Devices:
-  HAILORT/HAILO8:
-  - '@Index': 0
-    Board Name: Hailo-8
-    Device Architecture: HAILO8
-    Firmware Version: 4.19.0
-    ID: '0000:02:00.0'
-    Part Number: HM218B1C2LA
-    Product Name: HAILO-8 AI ACCELERATOR M.2 B+M KEY MODULE
-    Serial Number: SomeSerialNumber
-```
+### **2. Ensure the Correct Kernel is Selected**  
+When opening a notebook:  
+- Go to **Kernel → Change Kernel**.  
+- Select **Python (degirum_env)** to ensure the notebook runs inside the correct virtual environment.  
 
-> **Note:** DeGirum PySDK supports Hailo Runtime version **4.19.0**. Ensure your Hailo environment is configured to use this version.
 
+### **3. Default Notebook Settings and Customization**  
+Each Jupyter Notebook in this repository is pre-configured with default inference settings, including the inference environment, model zoo location, and target hardware. However, you can modify these values if your setup requires different configurations.
+
+Below are the default settings you will find in the notebooks, which you can adjust as needed:
+
+#### **Select Inference Host Address**  
+The `inference_host_address` determines where AI inference will be executed:  
+
+```python
+# Use local inference (e.g., when running on a device equipped with Hailo8/Hailo8L)
+inference_host_address = "@local"
+
+# Alternative: Specify a local server by IP or hostname
+# inference_host_address = "localhost"
+
+# Alternative: Use DeGirum AI Hub for cloud-based inference
+# inference_host_address = "@cloud"
+```  
+
+#### **Choose Model Zoo Location**  
+The `zoo_url` specifies where AI models are stored:  
+
+```python
+# Use DeGirum’s cloud model zoo (recommended for Hailo models)
+zoo_url = "degirum/hailo"
+
+# Alternative: Use a local directory containing models
+# zoo_url = "../models"
+```  
+
+#### **Set Authentication Token**  
+The `token` is required only for cloud inference with DeGirum AI Hub:  
+
+```python
+# No token needed for local inference
+token = ''
+
+# Alternative: Fetch token for cloud inference
+# token = degirum_tools.get_token()  # Use this when running on AI Hub
+```  
+
+#### **Specify Target Hardware**  
+The `device_type` defines the hardware used for inference:  
+
+```python
+# Default: Hailo8L device
+device_type = "HAILORT/HAILO8L"
+
+# Alternative: Hailo8 device (Note: Hailo8L models work on Hailo8, but not vice versa)
+# device_type = "HAILORT/HAILO8"
+```  
 ---
-
-## Example Usage
-
-### Image Inference
-
-#### Linux/macOS
-
-```bash
-degirum_cli predict-image \
-    --inference-host-address @local \
-    --model-name yolov8n_relu6_coco--640x640_quant_hailort_hailo8_1 \
-    --model-zoo-url degirum/hailo
-```
-
-#### Windows
-
-```cmd
-degirum_cli predict-image ^
-    --inference-host-address @local ^
-    --model-name yolov8n_relu6_coco--640x640_quant_hailort_hailo8_1 ^
-    --model-zoo-url degirum/hailo
-```
-
-### Video Inference
-
-#### Linux/macOS
-
-```bash
-degirum_cli predict-video \
-    --inference-host-address @local \
-    --model-name yolov8n_relu6_coco--640x640_quant_hailort_hailo8_1 \
-    --model-zoo-url degirum/hailo
-```
-
-#### Windows
-
-```cmd
-degirum_cli predict-video ^
-    --inference-host-address @local ^
-    --model-name yolov8n_relu6_coco--640x640_quant_hailort_hailo8_1 ^
-    --model-zoo-url degirum/hailo
-```
-
----
-
 ## Additional Resources
 
 - [Hailo Model Zoo](./hailo_model_zoo.md): Explore the full list of models optimized for Hailo hardware.
-- [Hailo8 Tutorial Notebook](examples/quick_start_hailo8.ipynb): Jupyter notebook tutorial to get started with Hailo8.
-- [Hailo8L Tutorial Notebook](examples/quick_start_hailo8l.ipynb): Jupyter notebook tutorial to get started with Hailo8L.
 - [DeGirum Documentation](https://docs.degirum.com)
 - [Hailo Documentation](https://hailo.ai/)
-
----
-
-Feel free to clone this repository and contribute by submitting pull requests or raising issues.
 
