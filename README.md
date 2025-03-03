@@ -129,7 +129,7 @@ Devices:
     Serial Number: SomeSerialNumber
 ```
 
-> **Note:** DeGirum PySDK supports Hailo Runtime version **4.19.0**. Ensure your Hailo environment is configured to use this version.
+> **Note:** DeGirum PySDK supports Hailo Runtime version **4.19.0** and **4.20.0**. Ensure your Hailo environment is configured to use this version.
 
 ---
 
