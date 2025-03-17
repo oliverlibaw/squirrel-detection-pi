@@ -33,6 +33,7 @@ Each notebook focuses on a specific AI application:
 | **008_object_detection_class_filtering.ipynb** | Filtering detected objects by class labels. |
 | **009_zone_counting.ipynb** | Counting objects in specific zones of an image or video. |
 | **010_emotion_recognition.ipynb** | Emotion recognition on images. |
+| **011_obb_detection.ipynb** | Oriented bounding box (OBB) detection in images. |
 
 ---
 
