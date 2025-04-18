@@ -34,7 +34,7 @@ Each notebook focuses on a specific AI application:
 | **009_zone_counting.ipynb** | Counting objects in specific zones of an image or video. |
 | **010_emotion_recognition.ipynb** | Emotion recognition on images. |
 | **011_obb_detection.ipynb** | Oriented bounding box (OBB) detection in images. |
-
+| **012_blur_objects.ipynb** | Blur detected objects in images. |
 ---
 
 ## **How to Modify Inference Settings**  
