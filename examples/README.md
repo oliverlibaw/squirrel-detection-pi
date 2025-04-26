@@ -36,6 +36,8 @@ Each notebook focuses on a specific AI application:
 | **011_obb_detection.ipynb** | Oriented bounding box (OBB) detection in images. |
 | **012_blur_objects.ipynb** | Blur detected objects in images. |
 | **013_overlay_effects.ipynb** | Overlay formatting on images. |
+| **014_light_enhancement_with_custom_postprocessor.ipynb** | Low light enhancement on images. |
+
 ---
 
 ## **How to Modify Inference Settings**  
