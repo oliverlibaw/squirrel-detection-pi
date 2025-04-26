@@ -1,0 +1,54 @@
+{
+    "Checksum": "75a6d98f6ca99ea6e150845ac71459b6e17b1775643c3e3e0ca80eb6524b409e",
+    "ConfigVersion": 6,
+    "DEVICE": [
+        {
+            "DeviceType": "HAILO8",
+            "RuntimeAgent": "HAILORT",
+            "SupportedDeviceTypes": "HAILORT/HAILO8"
+        }
+    ],
+    "MODEL_PARAMETERS": [
+        {
+            "ModelPath": "zero_dce--400x600_quant_hailo_hailo8_1.hef"
+        }
+    ],
+    "POST_PROCESS": [
+        {
+            "OutputPostprocessType": "None",
+            "PostProcessorInputs": [
+                1
+            ]
+        }
+    ],
+    "PRE_PROCESS": [
+        {
+            "ImageBackend": "auto",
+            "InputC": 3,
+            "InputH": 400,
+            "InputW": 600,
+            "InputColorSpace": "RGB",
+            "InputImgMean": [
+                0,
+                0,
+                0
+            ],
+            "InputImgStd": [
+                1,
+                1,
+                1
+            ],
+            "InputImgNormCoeff": 1,
+            "InputImgNormEn": false,
+            "InputImgSliceType": "None",
+            "InputN": 1,
+            "InputPadMethod": "stretch",
+            "InputQuantEn": true,
+            "InputQuantOffset": 0,
+            "InputQuantScale": 1,
+            "InputResizeMethod": "bilinear",
+            "InputTensorLayout": "NHWC",
+            "InputType": "Image"
+        }
+    ]
+}
