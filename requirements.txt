@@ -1,5 +1,20 @@
-notebook
-ipykernel
-degirum
-degirum_tools
-degirum_cli
+# Core dependencies
+degirum>=0.16.0
+degirum_tools>=0.16.0
+degirum_cli>=0.2.0
+
+# Computer vision
+opencv-python>=4.8.0
+numpy>=1.21.0
+
+# Utilities
+pathlib2>=2.3.0
+argparse>=1.4.0
+
+# Development and testing
+pytest>=7.0.0
+pytest-cov>=4.0.0
+
+# Documentation
+sphinx>=5.0.0
+sphinx-rtd-theme>=1.0.0

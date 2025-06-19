@@ -1,202 +1,207 @@
+# 🐿️ Squirrel Detection with YOLOV11s on Raspberry Pi
 
-# **Using DeGirum PySDK, DeGirum Tools, and Hailo Hardware**  
+Real-time squirrel detection using a custom YOLOV11s model on Raspberry Pi with Hailo AI accelerator HAT.
 
-This repository provides a comprehensive guide on using **DeGirum PySDK**, **DeGirum Tools**, and **Hailo hardware** for efficient AI inference. These tools simplify edge AI development by enabling seamless integration, testing, and deployment of AI models on multiple hardware platforms, including **Hailo-8** and **Hailo-8L**.  
+## 🚀 Features
 
----
+- **Real-time Detection**: Live object detection from webcam feed
+- **Bounding Box Visualization**: Draws boxes around detected squirrels
+- **Confidence Scores**: Displays confidence scores for each detection
+- **FPS Monitoring**: Real-time FPS display
+- **Multiple Modes**: GUI mode with live display or headless mode with frame saving
+- **Optimized for Raspberry Pi**: Uses Hailo AI accelerator for efficient inference
 
-## **Table of Contents**  
+## 📋 Prerequisites
 
-1. [Introduction](#introduction)  
-2. [Prerequisites](#prerequisites)  
-3. [Installation](#installation)  
-4. [Running and Configuring Jupyter Notebooks](#running-and-configuring-jupyter-notebooks) 
-5. [Additional Resources](#additional-resources) 
+- Raspberry Pi with Hailo AI accelerator HAT
+- DeGirum SDK installed
+- USB webcam or Pi Camera
+- Custom YOLOV11s model converted to DeGirum format
 
----
+## 🛠️ Installation
 
-## **Introduction**  
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/yourusername/squirrel-detection-pi.git
+   cd squirrel-detection-pi
+   ```
 
-DeGirum provides a powerful suite of tools to simplify the development and deployment of edge AI applications:  
+2. **Create and activate virtual environment:**
+   ```bash
+   python3 -m venv degirum_env
+   source degirum_env/bin/activate
+   ```
 
-- [**DeGirum PySDK**](https://github.com/DeGirum/PySDKExamples): The core library for integrating AI inference capabilities into applications.  
-- [**DeGirum Tools**](https://github.com/DeGirum/degirum_tools): Utilities for benchmarking, streaming, and interacting with DeGirum's model zoo.  
+3. **Install required packages:**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-These tools are designed to be hardware-agnostic, enabling developers to build scalable, flexible solutions without being locked into a specific platform.  
+4. **Add your model files:**
+   ```
+   models/squirrel_yolov11s--640x640_quant_hailort_multidevice_1/
+   ├── labels_squirrel_yolov11s.json
+   ├── squirrel_yolov11s--640x640_quant_hailort_multidevice_1.hef
+   └── squirrel_yolov11s--640x640_quant_hailort_multidevice_1.json
+   ```
 
----
+## 🎯 Usage
 
-## **Prerequisites**  
+### GUI Mode (with live display)
 
-- **Hailo Tools Installed**: Ensure that Hailo's tools and SDK are properly installed and configured. Refer to [Hailo's documentation](https://hailo.ai/) for detailed setup instructions. Also, enable the HailoRT Multi-Process service as per HailoRT documentation:  
+**Use when you have a desktop environment or X11 forwarding available.**
 
-  ```bash
-  sudo systemctl enable --now hailort.service  # for Ubuntu
-  ```  
-
-- **Hailo Runtime Compatibility**:  
-  DeGirum PySDK supports **Hailo Runtime versions 4.19.0, 4.20.0 and 4.21.0**. Ensure your Hailo environment is configured to use one of these versions.  
-
-- **Python 3.9 or Later**: Ensure Python is installed on your system. You can check your Python version using:  
-
-  ```bash
-  python3 --version
-  ```  
-
----
-
-## **Installation**  
-
-The best way to get started is to **clone this repository** and set up a virtual environment to keep dependencies organized. Follow these steps:  
-
-### **1. Clone the Repository**  
 ```bash
-git clone https://github.com/DeGirum/hailo_examples.git
-cd hailo_examples
-```  
+# Quick start
+./run_yolov11s_webcam.sh
 
-### **2. Create a Virtual Environment**  
-To keep the Python environment isolated, create a virtual environment:  
-
-#### **Linux/macOS**  
-```bash
-python3 -m venv degirum_env
+# Or run directly
 source degirum_env/bin/activate
-```  
+python webcam_yolov11s_detection.py --confidence 0.5
+```
 
-#### **Windows**  
+**Controls:**
+- `q` - Quit the application
+- `s` - Save a screenshot
+- `h` - Show help information
+
+### Headless Mode (save frames to disk)
+
+**Use when running over SSH or in environments without display support.**
+
 ```bash
-python3 -m venv degirum_env
-degirum_env\Scripts\activate
-```  
+# Quick start
+./run_yolov11s_headless.sh
 
-### **3. Install Required Dependencies**  
-Install all necessary packages from `requirements.txt`:  
-
-```bash
-pip install -r requirements.txt
-```  
-
----
-
-### **4. Add Virtual Environment to Jupyter**  
-
-If you plan to use **Jupyter Notebooks**, ensure the virtual environment is available as a Jupyter kernel.  
-
-#### **Step 1: Activate the Virtual Environment (if not already active)**  
-If you are not already inside the virtual environment, activate it:  
-
-**Linux/macOS:**  
-```bash
+# Or run directly
 source degirum_env/bin/activate
-```  
+python webcam_yolov11s_detection_headless.py --save-interval 30
+```
 
-**Windows:**  
+**Features:**
+- Saves annotated frames to `detection_output/` directory
+- Configurable save interval (default: every 30 frames ≈ 1 frame per second)
+- Real-time console output with FPS and detection counts
+- No display requirements - works over SSH
+
+## ⚙️ Configuration
+
+### Command Line Options
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `--model-path` | `models/squirrel_yolov11s--640x640_quant_hailort_multidevice_1` | Path to model directory |
+| `--camera` | `0` | Camera index (0 for default webcam) |
+| `--confidence` | `0.5` | Confidence threshold (0.0-1.0) |
+| `--width` | `640` | Camera width |
+| `--height` | `480` | Camera height |
+| `--device` | `HAILORT/HAILO8L` | Hailo device type |
+| `--save-interval` | `30` | Save frame every N frames (headless mode only) |
+
+### Example Usage
+
 ```bash
-degirum_env\Scripts\activate
-```  
+# High confidence detection
+python webcam_yolov11s_detection.py --confidence 0.8
 
-#### **Step 2: Ensure the Virtual Environment is Available in Jupyter**  
-Since `notebook` and `ipykernel` are already installed via `requirements.txt`, simply run:  
+# Lower resolution for better performance
+python webcam_yolov11s_detection.py --width 320 --height 240
+
+# Save frames more frequently
+python webcam_yolov11s_detection_headless.py --save-interval 15
+```
+
+## 📊 Model Information
+
+- **Model**: Custom YOLOV11s
+- **Class**: Squirrel
+- **Input Resolution**: 640x640
+- **Device**: Hailo8L/Hailo8
+- **Format**: Quantized HailoRT
+- **Performance**: ~22 FPS on Raspberry Pi with Hailo accelerator
+
+## 🔧 Troubleshooting
+
+### Common Issues
+
+1. **"Could not open webcam"**
+   - Check if webcam is connected
+   - Try different camera index: `--camera 1`
+   - Ensure webcam permissions
+
+2. **"Model not found"**
+   - Verify model path is correct
+   - Check that all model files are present
+
+3. **Qt/X11 Display Errors (GUI Mode)**
+   - Use headless mode instead: `./run_yolov11s_headless.sh`
+   - Or enable X11 forwarding: `ssh -X pi@your-pi-ip`
+
+4. **Low FPS**
+   - Reduce camera resolution
+   - Increase confidence threshold
+   - Check Hailo device status
+   - Use headless mode for better performance
+
+5. **No detections**
+   - Lower confidence threshold: `--confidence 0.3`
+   - Check if objects are in frame
+   - Verify model is trained for your use case
+
+### Testing Setup
+
+Run the test script to verify your setup:
 
 ```bash
-python -m ipykernel install --user --name=degirum_env --display-name "Python (degirum_env)"
-```  
+python test_webcam_setup.py
+```
 
-This ensures that Jupyter recognizes the virtual environment as an available kernel.  
+## 📁 Project Structure
+
+```
+squirrel-detection-pi/
+├── webcam_yolov11s_detection.py           # GUI version
+├── webcam_yolov11s_detection_headless.py  # Headless version
+├── run_yolov11s_webcam.sh                 # GUI launcher
+├── run_yolov11s_headless.sh               # Headless launcher
+├── test_webcam_setup.py                   # Setup verification
+├── requirements.txt                       # Python dependencies
+├── config.yaml                           # Configuration file
+├── detection_output/                      # Saved frames (headless mode)
+├── models/                               # Model files (add your own)
+│   └── squirrel_yolov11s--640x640_quant_hailort_multidevice_1/
+│       ├── labels_squirrel_yolov11s.json
+│       ├── squirrel_yolov11s--640x640_quant_hailort_multidevice_1.hef
+│       └── squirrel_yolov11s--640x640_quant_hailort_multidevice_1.json
+└── README.md                             # This file
+```
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature-name`
+3. Commit your changes: `git commit -am 'Add feature'`
+4. Push to the branch: `git push origin feature-name`
+5. Submit a pull request
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- [DeGirum](https://degirum.com/) for the AI inference SDK
+- [Hailo](https://hailo.ai/) for the AI accelerator hardware
+- [Ultralytics](https://ultralytics.com/) for YOLO models
+
+## 📞 Support
+
+For issues and questions:
+- Create an issue in this repository
+- Check the [DeGirum documentation](https://docs.degirum.com/)
+- Refer to [Hailo documentation](https://hailo.ai/developer-zone/)
 
 ---
 
-### **5. Verify Installation**  
-
-To ensure that everything is set up correctly, run the provided test script:  
-
-```bash
-python test.py
-```  
-
-This script will:  
-- Check system information.  
-- Verify that Hailo hardware is recognized.  
-- Load and run inference with a sample AI model.  
-
-If the test runs successfully, your environment is properly configured.  
-
-
-## **Running and Configuring Jupyter Notebooks**  
-
-This repository includes an `examples` folder containing multiple use case examples demonstrating how to run AI inference using DeGirum PySDK and Hailo hardware. You can find detailed descriptions and usage instructions for each example in the [**Examples README**](examples/README.md).  
-
-### **1. Start Jupyter Notebook**  
-Now that the Jupyter environment is set up, you can start Jupyter Notebook:  
-
-```bash
-jupyter notebook
-```  
-
-This will open Jupyter in your web browser, allowing you to navigate to the `examples` folder and run the available notebooks.  
-
-### **2. Ensure the Correct Kernel is Selected**  
-When opening a notebook:  
-- Go to **Kernel → Change Kernel**.  
-- Select **Python (degirum_env)** to ensure the notebook runs inside the correct virtual environment.  
-
-
-### **3. Default Notebook Settings and Customization**  
-Each Jupyter Notebook in this repository is pre-configured with default inference settings, including the inference environment, model zoo location, and target hardware. However, you can modify these values if your setup requires different configurations.
-
-Below are the default settings you will find in the notebooks, which you can adjust as needed:
-
-#### **Select Inference Host Address**  
-The `inference_host_address` determines where AI inference will be executed:  
-
-```python
-# Use local inference (e.g., when running on a device equipped with Hailo8/Hailo8L)
-inference_host_address = "@local"
-
-# Alternative: Specify a local server by IP or hostname
-# inference_host_address = "localhost"
-
-# Alternative: Use DeGirum AI Hub for cloud-based inference
-# inference_host_address = "@cloud"
-```  
-
-#### **Choose Model Zoo Location**  
-The `zoo_url` specifies where AI models are stored:  
-
-```python
-# Use DeGirum’s cloud model zoo (recommended for Hailo models)
-zoo_url = "degirum/hailo"
-
-# Alternative: Use a local directory containing models
-# zoo_url = "../models"
-```  
-
-#### **Set Authentication Token**  
-The `token` is required only for cloud inference with DeGirum AI Hub:  
-
-```python
-# No token needed for local inference
-token = ''
-
-# Alternative: Fetch token for cloud inference
-# token = degirum_tools.get_token()  # Use this when running on AI Hub
-```  
-
-#### **Specify Target Hardware**  
-The `device_type` defines the hardware used for inference:  
-
-```python
-# Default: Hailo8L device
-device_type = "HAILORT/HAILO8L"
-
-# Alternative: Hailo8 device (Note: Hailo8L models work on Hailo8, but not vice versa)
-# device_type = "HAILORT/HAILO8"
-```  
----
-## Additional Resources
-
-- [Hailo Model Zoo](./hailo_model_zoo.md): Explore the full list of models optimized for Hailo hardware.
-- [DeGirum Documentation](https://docs.degirum.com)
-- [Hailo Documentation](https://hailo.ai/)
+**Happy squirrel hunting! 🐿️🔍**
 

@@ -1,3 +1,71 @@
-.temp
-__pycache__
-.ipynb_checkpoints
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+degirum_env/
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Project specific
+detection_output/
+*.jpg
+*.jpeg
+*.png
+*.mp4
+*.avi
+*.mov
+*.log
+hailort.log
+pyhailort.log
+
+# Model files (exclude large models but allow our squirrel model)
+models/*.hef
+models/*.bin
+# Allow our specific squirrel model
+!models/squirrel_yolov11s--640x640_quant_hailort_multidevice_1/
+!models/squirrel_yolov11s--640x640_quant_hailort_multidevice_1/*.hef
+!models/squirrel_yolov11s--640x640_quant_hailort_multidevice_1/*.json
+
+# Jupyter notebooks
+.ipynb_checkpoints/
+
+# Temporary files
+*.tmp
+*.temp

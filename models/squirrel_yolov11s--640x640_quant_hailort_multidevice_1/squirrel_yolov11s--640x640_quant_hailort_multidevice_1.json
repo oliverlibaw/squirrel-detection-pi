@@ -1,0 +1,33 @@
+{
+    "ConfigVersion": 6,
+    "Checksum": "9985dbe556f2f3cb6093b48a7db01dcdff51510f73c812030270589cf9121191",
+    "DEVICE": [
+        {
+            "DeviceType": "HAILO8L",
+            "RuntimeAgent": "HAILORT",
+            "ThreadPackSize": 6,
+            "SupportedDeviceTypes": "HAILORT/HAILO8L, HAILORT/HAILO8"
+        }
+    ],
+    "PRE_PROCESS": [
+        {
+            "InputN": 1,
+            "InputH": 640,
+            "InputW": 640,
+            "InputC": 3,
+            "InputQuantEn": true
+        }
+    ],
+    "MODEL_PARAMETERS": [
+        {
+            "ModelPath": "squirrel_yolov11s--640x640_quant_hailort_multidevice_1.hef"
+        }
+    ],
+    "POST_PROCESS": [
+        {
+            "OutputPostprocessType": "DetectionYoloV8",
+            "OutputNumClasses": 1,
+            "LabelsPath": "labels_squirrel_yolov11s.json"
+        }
+    ]
+}

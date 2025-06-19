@@ -1,0 +1,42 @@
+# YOLOV11s Webcam Detection Configuration
+
+# Model settings
+model:
+  path: "models/squirrel_yolov11s--640x640_quant_hailort_multidevice_1"
+  device_type: "HAILORT/HAILO8L"
+  confidence_threshold: 0.5
+
+# Camera settings
+camera:
+  index: 0
+  width: 640
+  height: 480
+  fps: 30
+  buffer_size: 1
+
+# Display settings
+display:
+  window_name: "YOLOV11s Detection"
+  show_fps: true
+  show_inference_time: true
+  show_detection_count: true
+  show_model_info: true
+  show_confidence_threshold: true
+
+# Overlay settings
+overlay:
+  show_probabilities: true
+  show_labels: true
+  line_thickness: 2
+  font_scale: 0.6
+  font_thickness: 2
+
+# Performance settings
+performance:
+  enable_fps_tracking: true
+  fps_update_interval: 1.0  # seconds
+
+# Output settings
+output:
+  screenshot_prefix: "yolov11s_screenshot"
+  screenshot_counter: 0 
